@@ -1,8 +1,17 @@
 import { Header } from "../components/Header.jsx";
-import "./HomePage.css";
 import { products } from "../../starting-code/data/products.js";
+import "./HomePage.css";
 
 export function HomePage() {
+  fetch("http://localhost:3000/api/products") //to get data from url (asynchronous code).
+    .then((response) => {
+      return response.json(); //promise
+      // console.log(data);
+      //console.log(response);
+    })
+    .then((data) => {
+      console.log(data);
+    });
   return (
     <>
       <Header />

@@ -1,23 +1,27 @@
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Header } from "../components/Header.jsx";
-import { products } from "../../starting-code/data/products.js";
 import "./HomePage.css";
 
 export function HomePage() {
-  axios.get("http://localhost:3000/api/products")
-    .then((response) => {
-        response.data;
-        console.log(response.data);
-    }); //to get data from url (asynchronous code).
-    /*.then((response) => {
+  const [products, setProducts ] = useState([]);  //name, updater function
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/api/products").then((response) => {
+      response.data;
+      setProducts(response.data);
+    }, []);//dependency array, when useEffect runs, [] -1 
+  }); //to control when the code runs
+  //to get data from url (asynchronous code).
+
+  /*.then((response) => {
       return response.json(); //promise
       // console.log(data);
       //console.log(response);
     })
     .then((data) => {
       console.log(data);
-    });  //without axios*/ 
-    
+    });  //without axios*/
 
   return (
     <>

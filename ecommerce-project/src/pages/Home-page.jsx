@@ -6,12 +6,20 @@ import "./HomePage.css";
 export function HomePage() {
   const [products, setProducts ] = useState([]);  //name, updater function
 
+  const [cart, setCart] =useState([]);
+
   useEffect(() => {
     axios.get("http://localhost:3000/api/products").then((response) => {
       response.data;
       setProducts(response.data);
-    }, []);//dependency array, when useEffect runs, [] -1 
-  }); //to control when the code runs
+    }); //dependency array, when useEffect runs, [] -1 
+
+    axios.get("http://localhost:3000/api/cart-items").then((response)=>{
+      setCart(response.data);
+    }); 
+  }, 
+  []);
+   //to control when the code runs
   //to get data from url (asynchronous code).
 
   /*.then((response) => {
@@ -25,7 +33,7 @@ export function HomePage() {
 
   return (
     <>
-      <Header />
+      <Header cart = {cart}/>
       <title>Online-Shop</title>
       <link rel="icon" type="image/svg+xml" href="/home-favicon.png" />
 

@@ -3,20 +3,16 @@ import axios from "axios";
 import { Header } from "../components/Header.jsx";
 import "./HomePage.css";
 
-export function HomePage() {
+export function HomePage({cart}) {
   const [products, setProducts ] = useState([]);  //name, updater function
 
-  const [cart, setCart] =useState([]);
+
 
   useEffect(() => {
     axios.get("/api/products").then((response) => {
       response.data;
       setProducts(response.data);
     }); //dependency array, when useEffect runs, [] -1 
-
-    axios.get("/api/cart-items").then((response)=>{
-      setCart(response.data);
-    }); 
   }, 
   []);
    //to control when the code runs

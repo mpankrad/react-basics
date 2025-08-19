@@ -3,12 +3,12 @@ import { Routes, Route } from "react-router";
 
 import { useState, useEffect } from "react";
 
-import { HomePage } from "./pages/Home-page";
+import { HomePage } from "./pages/home/Home-page";
 import { CheckoutPage } from "./pages/checkout/CheckoutPage";
-import { OrdersPage } from "./pages/OrdersPage";
+import { OrdersPage } from "./pages/orders/OrdersPage";
 
 import "./App.css";
-import { Tracking } from "./pages/Tracking";
+import { Tracking } from "./pages/tracking/Tracking";
 
 function App() {
   const [cart, setCart] = useState([]);

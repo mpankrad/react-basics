@@ -1,20 +1,22 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
 import { useState, useEffect, Fragment } from 'react';
-import { Link } from "react-router-dom";
-import { Header } from "../../components/Header.jsx";
-import {formatMoney} from '../../utils/money.js'
+import { Link } from 'react-router';
+import { Header } from '../../components/Header.jsx';
+import { formatMoney } from '../../utils/money.js';
 import './OrdersPage.css';
 
 export function OrdersPage({ cart }) {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/orders?expand=products')
-      .then((response) => {
+    const fetchOrders = async() => {
+        const response = await axios.get('/api/orders?expand=products')
         setOrders(response.data);
-      });
+    };
+    fetchOrders();
   }, []);
+
 
   return (
     <>
@@ -73,7 +75,7 @@ export function OrdersPage({ cart }) {
                         </div>
 
                         <div className="product-actions">
-                          <Link href="/tracking">
+                          <Link to="/tracking">
                             <button className="track-package-button button-secondary">
                               Track package
                             </button>
